@@ -23,6 +23,11 @@ export const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    banks: {
+      type: Object,
+      default: {},
+      required: true,
+    },
   },
   { versionKey: false },
 );

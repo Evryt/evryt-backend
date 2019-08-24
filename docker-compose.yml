@@ -6,7 +6,7 @@ services:
     depends_on:
       - evryt_db
     ports:
-      - '8090:8090'
+      - '8099:8099'
     networks:
       - backend
     volumes:

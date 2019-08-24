@@ -7,3 +7,11 @@ export class UserRegistrationDro {
   @ApiModelProperty()
   readonly session: string;
 }
+
+export class UserLoginDro {
+  @ApiModelProperty()
+  readonly error: boolean;
+
+  @ApiModelProperty()
+  readonly session: string;
+}

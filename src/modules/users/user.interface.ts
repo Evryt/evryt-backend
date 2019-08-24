@@ -1,4 +1,7 @@
 import { Document } from 'mongoose';
+interface BanksApiKeys {
+  [bankName: string]: { apiKeyClaimTmpCode: string; apiKey: string };
+}
 
 export interface UserInterface extends Document {
   readonly email: string;
@@ -10,4 +13,6 @@ export interface UserInterface extends Document {
   readonly pubkey: string;
 
   readonly session: string;
+
+  readonly banks: BanksApiKeys;
 }

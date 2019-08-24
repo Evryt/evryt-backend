@@ -18,6 +18,16 @@ async function bootstrap() {
   const usersDocument = SwaggerModule.createDocument(app, usersOptions);
   SwaggerModule.setup('/docs', app, usersDocument);
 
-  await app.listen(8090);
+  const banksOptions = new DocumentBuilder()
+    .addTag('banks')
+    .setBasePath('api/v1')
+    .setHost(process.env.HOST_NAME)
+    .build();
+  const banksDocument = SwaggerModule.createDocument(app, banksOptions);
+  SwaggerModule.setup('/docs', app, banksDocument);
+
+  app.enableCors();
+
+  await app.listen(8099);
 }
 bootstrap();

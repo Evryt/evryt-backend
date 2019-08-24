@@ -10,6 +10,6 @@ RUN npm install -g ts-node nodemon typescript
 RUN npm install
 
 
-EXPOSE 8089
+EXPOSE 8099
 
 CMD ["nodemon", "."]

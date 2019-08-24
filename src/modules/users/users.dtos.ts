@@ -19,3 +19,14 @@ export class RegisterUserDto {
   @IsNotEmpty()
   readonly pubkey: string;
 }
+
+export class LoginUserDto {
+  @ApiModelProperty()
+  @IsNotEmpty()
+  @IsEmail()
+  readonly email: string;
+
+  @ApiModelProperty()
+  @IsNotEmpty()
+  readonly passwordHash: string;
+}
