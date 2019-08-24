@@ -1,0 +1,22 @@
+version: '3'
+services:
+  evryt_app:
+    build: .
+    command: 'nodemon .'
+    depends_on:
+      - evryt_db
+    ports:
+      - '8090:8090'
+    networks:
+      - backend
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - .env
+  evryt_db:
+    image: mongo
+    networks:
+      - backend
+networks:
+  backend:
