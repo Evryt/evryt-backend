@@ -99,11 +99,21 @@ export class BanksController {
     }
 
     const apiKey = response.data.ApiKey;
+    const accountID = response.data.accountID;
 
-    await this.usersService.setUsersBankInfo(user.email, bankName, {
-      apiKey,
-      apiKeyClaimTmpCode: tmpCode,
-    });
+    let banksInfo = user.banks;
+
+    banksInfo[bankName].apiKey = apiKey;
+    banksInfo[bankName].apiKeyClaimTmpCode = tmpCode;
+    const currenctAccounts = banksInfo[bankName].accounts;
+    if (!currenctAccounts) {
+      banksInfo[bankName].accounts = [];
+    }
+    banksInfo[bankName].accounts.push(accountID);
+
+    console.log(apiKey);
+
+    await this.usersService.setUsersBanksInfo(user.email, banksInfo);
 
     return { error: false };
   }

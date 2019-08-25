@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Model } from 'mongoose';
 
-import { UserInterface } from './user.interface';
+import { UserInterface, BanksInfos } from './user.interface';
 import { USER_SCHEMA_PROVIDER } from 'src/utils/constants';
 
 @Injectable()
@@ -33,12 +33,11 @@ export class UsersService {
     return this.userModel.findOne({ session });
   }
 
-  async setUsersBankInfo(
-    email: string,
-    bankName: string,
-    info: { apiKeyClaimTmpCode: string; apiKey: string },
-  ) {
-    const key = 'banks.' + bankName;
-    await this.userModel.updateOne({ email }, { $set: { [key]: info } });
+  async setUsersBanksInfo(email: string, info: BanksInfos) {
+    await this.userModel.updateOne({ email }, { $set: { banks: info } });
+  }
+
+  async getAll(): Promise<UserInterface[]> {
+    return this.userModel.find({});
   }
 }

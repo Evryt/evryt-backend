@@ -1,6 +1,10 @@
 import { Document } from 'mongoose';
-interface BanksApiKeys {
-  [bankName: string]: { apiKeyClaimTmpCode: string; apiKey: string };
+export interface BanksInfos {
+  [bankName: string]: {
+    apiKeyClaimTmpCode: string;
+    apiKey: string;
+    accounts: number[];
+  };
 }
 
 export interface UserInterface extends Document {
@@ -14,5 +18,5 @@ export interface UserInterface extends Document {
 
   readonly session: string;
 
-  readonly banks: BanksApiKeys;
+  readonly banks: BanksInfos;
 }
